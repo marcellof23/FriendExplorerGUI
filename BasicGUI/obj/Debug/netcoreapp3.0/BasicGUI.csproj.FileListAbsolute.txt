@@ -1,0 +1,16 @@
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.exe
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.deps.json
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.runtimeconfig.json
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.runtimeconfig.dev.json
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.dll
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.pdb
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csprojAssemblyReference.cache
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.Form1.resources
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.Properties.Resources.resources
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csproj.GenerateResource.cache
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.AssemblyInfoInputs.cache
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.AssemblyInfo.cs
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csproj.CoreCompileInputs.cache
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.dll
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.pdb
+C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.genruntimeconfig.cache
