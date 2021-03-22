@@ -8,7 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-
+using Microsoft.Msagl.Core.Routing;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.WpfGraphControl;
+using Microsoft.Win32;
+using Color = Microsoft.Msagl.Drawing.Color;
 namespace BasicGUI
 {
     public partial class Form1 : Form
@@ -25,7 +29,7 @@ namespace BasicGUI
         {
             InitializeComponent();
         }
-
+        
         static List<List<string>> parsingFile(string path)
         {
             List<List<string>> res = new List<List<string>>();
@@ -58,12 +62,18 @@ namespace BasicGUI
             this.fullpath = openFileDialog1.FileName;
             List<List<string>> data = Form1.parsingFile(this.fullpath);
             this.g = new Graph(data.Count);
-
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (List<string> vertices in data)
             {
+                graph.AddEdge(vertices.First(), vertices.Last());
                 this.g.addEdge(vertices.First(), vertices.Last());
             }
-
+            viewer.Graph = graph;
+            //associate the viewer with the form 
+            this.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Controls.Add(viewer);
             foreach (var x in this.g.getVertices())
             {
                 comboBox1.Items.Add(x);
@@ -73,12 +83,16 @@ namespace BasicGUI
             if (!openFileDialog1.FileName.Contains(".txt"))
             {
                 MessageBox.Show("The file you've chosen is not a text file");
+                
             }
             else
             {
+                this.filecontent = File.ReadAllText(openFileDialog1.FileName);
+                richTextBox1.Text = this.filecontent;
                 string filename = System.IO.Path.GetFileName(this.fullpath);
                 label7.Text = filename;
             }
+            
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -101,11 +115,12 @@ namespace BasicGUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(this.source != "" && this.destination != "" && this.fullpath != "" && this.algorithm != "")
+            richTextBox1.Clear();
+            richTextBox1.Focus();
+            if (this.source != "" && this.destination != "" && this.fullpath != "" && this.algorithm != "")
             {
                 string filename = System.IO.Path.GetFileName(this.fullpath);
-                this.filecontent = File.ReadAllText(openFileDialog1.FileName);
-                richTextBox1.Text = this.filecontent;
+   
                 label7.Text = filename;
 
                 if(this.algorithm == "BFS")
@@ -132,6 +147,16 @@ namespace BasicGUI
             {
                 MessageBox.Show("Please complete an input");
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
