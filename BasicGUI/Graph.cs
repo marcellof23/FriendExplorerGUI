@@ -44,7 +44,7 @@ namespace BasicGUI
             return -1;
         }
 
-        private string printPath(List<string> path)
+        private string printPath(List<string> path, ref string ans)
         {
             string res = "";
             for (int i = 0; i < path.Count - 1; i++)
@@ -62,14 +62,13 @@ namespace BasicGUI
             return res;
         }
 
-        private void dfs(string src, string dest, bool[] visited, List<string> path)
+        private void dfs(string src, string dest, bool[] visited, List<string> path, ref string ans)
         {
             path.Add(src);
             if (src == dest)
             {
-                printPath(path);
+                ans = printPath(path, ref ans);
                 visited[findVertexIdx(dest)] = true;
-                return;
             }
             visited[findVertexIdx(src)] = true;
             if (visited[findVertexIdx(dest)] == false)
@@ -78,7 +77,7 @@ namespace BasicGUI
                 {
                     if (visited[findVertexIdx(edge)] == false)
                     {
-                        dfs(edge, dest, visited, path);
+                        dfs(edge, dest, visited, path, ref ans);
                     }
                 }
                 path.RemoveAt(path.Count - 1);
@@ -385,16 +384,18 @@ namespace BasicGUI
                 return res;
             }
 
+
             foreach (Vertex v in vertices)
             {
                 visited[findVertexIdx(v.value)] = false;
             }
             List<string> path = new List<string>();
-            dfs(src, dest, visited, path);
+            dfs(src, dest, visited, path, ref res);
             if (visited[findVertexIdx(dest)] == false)
             {
                 Console.WriteLine("Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
                 res += ("Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
+                return res;
             }
             return res;
         }
