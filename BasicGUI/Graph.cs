@@ -43,6 +43,7 @@ namespace BasicGUI
             }
             return -1;
         }
+
         private string printPath(List<string> path)
         {
             string res = "";
@@ -83,6 +84,7 @@ namespace BasicGUI
                 path.RemoveAt(path.Count - 1);
             }
         }
+
         public void addEdge(string src, string dest)
         {
             addVertex(src);
@@ -97,6 +99,7 @@ namespace BasicGUI
             vsrc.edges.Sort();
             vdest.edges.Sort();
         }
+
         public string print()
         {
             string res = "";
@@ -114,6 +117,7 @@ namespace BasicGUI
             }
             return res;
         }
+
         public string friendRecommendationBFS(string source)
         {
             string res = "";
@@ -195,6 +199,7 @@ namespace BasicGUI
             }
             return res;
         }
+
         public string friendRecommendationDFS(string source)
         {
             string result = "";
@@ -281,6 +286,14 @@ namespace BasicGUI
             string res = "";
             int level = 0;
 
+            if(src == dest)
+            {
+                res += ("Nama akun: " + src + " dan " + dest + "\n");
+                res += (src + "\n");
+                res += ("0nd-degree connection");
+                return res;
+            }
+
             List<List<string>> path = new List<List<string>>();
 
             List<string> q = new List<string>();
@@ -339,6 +352,7 @@ namespace BasicGUI
                 for (int i = 0; i < path[path.Count - 1].Count - 1; i++)
                 {
                     Console.Write("{0} -> ", path[path.Count - 1][i]);
+                    res += (path[path.Count - 1][i] + " -> ");
                 }
                 Console.Write("{0}\n", path[path.Count - 1][path[path.Count - 1].Count - 1]);
                 res += (path[path.Count - 1][path[path.Count - 1].Count - 1] + "\n");
@@ -354,12 +368,23 @@ namespace BasicGUI
                 res += ("Tidak ada jalur koneksi yang tersedia" + "\n" );
                 res += ("Anda harus memulai koneksi baru itu sendiri." + "\n");
             }
+
             return res;
         }
+
         public string exploreFriendsDFS(string src, string dest)
         {
             string res = "";
             bool[] visited = new bool[numVertices];
+
+            if (src == dest)
+            {
+                res += ("Nama akun: " + src + " dan " + dest + "\n");
+                res += (src + "\n");
+                res += ("0nd-degree connection");
+                return res;
+            }
+
             foreach (Vertex v in vertices)
             {
                 visited[findVertexIdx(v.value)] = false;
@@ -372,6 +397,18 @@ namespace BasicGUI
                 res += ("Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
             }
             return res;
+        }
+
+        public List<string> getVertices()
+        {
+            List<string> vertex = new List<string>();
+
+            foreach(var x in this.vertices)
+            {
+                vertex.Add(x.value);
+            }
+
+            return vertex;
         }
     }
 }

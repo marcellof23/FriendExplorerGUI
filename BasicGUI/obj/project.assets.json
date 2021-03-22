@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS ROG G531GD\\Source\\Repos\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
+      "projectUniqueName": "C:\\Data Karel\\IF-ITB\\IF Semester 4\\Stima\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
       "projectName": "BasicGUI",
-      "projectPath": "C:\\Users\\ASUS ROG G531GD\\Source\\Repos\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
-      "packagesPath": "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS ROG G531GD\\Source\\Repos\\Gui-Stima2\\BasicGUI\\obj\\",
+      "projectPath": "C:\\Data Karel\\IF-ITB\\IF Semester 4\\Stima\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Data Karel\\IF-ITB\\IF Semester 4\\Stima\\Gui-Stima2\\BasicGUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS ROG G531GD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

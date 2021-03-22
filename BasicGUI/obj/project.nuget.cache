@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "DvKf0fjayAvJT0Ej9ikOFFMnRKTRDD3xGmNAKRdOkgLq3MUOjgeiEGvV3LC7fXXceq2Oi2ymrihIh0y6VsA/dQ==",
+  "dgSpecHash": "KDBHoe8N9WoqQ+xyaJUY02+u+8gfvj4XPxNSzqIDDLUTm8m3Qb1cZAm0tRxRKF41Gto80wSUTTXVlU5Lv1KCqw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS ROG G531GD\\Source\\Repos\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
+  "projectFilePath": "C:\\Data Karel\\IF-ITB\\IF Semester 4\\Stima\\Gui-Stima2\\BasicGUI\\BasicGUI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.0.3\\microsoft.netcore.app.host.win-x64.3.0.3.nupkg.sha512",
-    "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
-    "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.0.0\\microsoft.windowsdesktop.app.ref.3.0.0.nupkg.sha512",
-    "C:\\Users\\ASUS ROG G531GD\\.nuget\\packages\\microsoft.netcore.app.ref\\3.0.0\\microsoft.netcore.app.ref.3.0.0.nupkg.sha512"
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.0.3\\microsoft.netcore.app.host.win-x64.3.0.3.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.0.0\\microsoft.windowsdesktop.app.ref.3.0.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.netcore.app.ref\\3.0.0\\microsoft.netcore.app.ref.3.0.0.nupkg.sha512"
   ],
   "logs": []
 }

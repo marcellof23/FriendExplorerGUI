@@ -14,3 +14,19 @@ C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.
 C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.dll
 C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.pdb
 C:\Users\ASUS ROG G531GD\Source\Repos\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.genruntimeconfig.cache
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.exe
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.deps.json
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.runtimeconfig.json
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.runtimeconfig.dev.json
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.dll
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\bin\Debug\netcoreapp3.0\BasicGUI.pdb
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csprojAssemblyReference.cache
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.Form1.resources
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.Properties.Resources.resources
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csproj.GenerateResource.cache
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.AssemblyInfoInputs.cache
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.AssemblyInfo.cs
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.csproj.CoreCompileInputs.cache
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.dll
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.pdb
+C:\Data Karel\IF-ITB\IF Semester 4\Stima\Gui-Stima2\BasicGUI\obj\Debug\netcoreapp3.0\BasicGUI.genruntimeconfig.cache
