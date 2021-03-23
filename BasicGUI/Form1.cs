@@ -26,6 +26,7 @@ namespace BasicGUI
         Graph g;
         Microsoft.Msagl.Drawing.Graph graph;
         List<string> res;
+        HashSet<string> pilihan;
         // List<Microsoft.Msagl.Drawing.Edge> Edgess;
         public Form1()
         {
@@ -66,6 +67,7 @@ namespace BasicGUI
             this.g = new Graph(data.Count);
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            this.pilihan = new HashSet<string>();
             foreach (List<string> vertices in data)
             {
                 var Edge = this.graph.AddEdge(vertices.First(), vertices.Last());
@@ -82,6 +84,7 @@ namespace BasicGUI
             foreach (var x in this.g.getVertices())
             {
                 comboBox1.Items.Add(x);
+                this.pilihan.Add(x);
                 comboBox2.Items.Add(x);
             }
 
@@ -111,6 +114,7 @@ namespace BasicGUI
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.source = comboBox1.SelectedItem.ToString();
+
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,19 +135,63 @@ namespace BasicGUI
             }
 
 
-            if (this.source != "" && this.destination != "" && this.fullpath != "" && this.algorithm != "")
+            if (this.fullpath != "" && this.algorithm != "" && (comboBox1.Text != "" || comboBox2.Text != "") || (this.source != "" && this.destination != "") )
             {
                 string filename = System.IO.Path.GetFileName(this.fullpath);
                 label7.Text = filename;
-
+                if(this.source == "")
+                {
+                    this.source = comboBox1.Text;
+                }
+                if (this.destination == "")
+                {
+                    this.destination = comboBox2.Text;
+                }
+                bool canRecommendation = false, canExplore1 = false, canExplore2 = false;
+                foreach (var x in pilihan)
+                {
+                    if (comboBox1.Text == x)
+                    {
+                        canRecommendation = true;
+                    }
+                }
+                foreach (var x in pilihan)
+                {
+                    if (comboBox1.Text == x)
+                    {
+                        canExplore1 = true;
+                    }
+                    if (comboBox2.Text == x)
+                    {
+                        canExplore2 = true;
+                    }
+                }
                 if (this.algorithm == "BFS")
                 {
                     richTextBox1.Clear();
                     richTextBox1.Focus();
+                   
                     this.res = new List<string>();
-                    richTextBox1.AppendText(this.g.friendRecommendationBFS(this.source));
+                   
+                    if (canRecommendation)
+                    {
+                        richTextBox1.AppendText(this.g.friendRecommendationBFS(this.source));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please complete the input");
+                    }
                     richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.AppendText(this.g.exploreFriendBFS(this.source, this.destination, ref this.res));
+
+                    
+                    if (canExplore1 && canExplore2)
+                    {
+                        richTextBox1.AppendText(this.g.exploreFriendBFS(this.source, this.destination, ref this.res));
+                    }
+                    else if (canRecommendation == false)
+                    {
+                        MessageBox.Show("Please complete the input");
+                    }
                     if (res.Any())
                     {
                         this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
@@ -173,6 +221,8 @@ namespace BasicGUI
                         {
                             this.graph.FindNode(this.res[i]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Plum;
                         }
+                        this.source = "";
+                        this.destination = "";
                     }
                 }
 
@@ -181,15 +231,27 @@ namespace BasicGUI
                     richTextBox1.Clear();
                     richTextBox1.Focus();
                     this.res = new List<string>();
-                    richTextBox1.AppendText(this.g.friendRecommendationDFS(this.source));
+                               
+                    if (canRecommendation)
+                    {
+                        richTextBox1.AppendText(this.g.friendRecommendationDFS(this.source));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please complete the input");
+                    }
                     richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination, ref this.res));
+                    if (canExplore1 && canExplore2)
+                    {
+                        richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination, ref this.res));
+                    }
+                    else if(canRecommendation == false)
+                    {
+                        MessageBox.Show("Please complete the input");
+                    }
                     if (res.Any())
                     {
-                        foreach(var x in res)
-                        {
-                            richTextBox1.AppendText(x);
-                        }
+                        
 
                         this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
                         foreach (List<string> vertices in data)
@@ -219,6 +281,8 @@ namespace BasicGUI
                             this.graph.FindNode(this.res[i]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Plum;
                         }
                     }
+                    this.source = "";
+                    this.destination = "";
                 }
                 else
                 {
@@ -241,6 +305,11 @@ namespace BasicGUI
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }
