@@ -399,6 +399,7 @@ namespace BasicGUI
                 res += ("Nama akun: " + src + " dan " + dest + "\n");
                 res += (src + "\n");
                 res += ("0nd-degree connection");
+                verticesResult.Add(src);
                 return res;
             }
 
