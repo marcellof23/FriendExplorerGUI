@@ -44,15 +44,17 @@ namespace BasicGUI
             return -1;
         }
 
-        private string printPath(List<string> path, ref string ans)
+        private string printPath(List<string> path, ref string ans, ref List<string> verticesResult)
         {
             string res = "";
             for (int i = 0; i < path.Count - 1; i++)
             {
                 Console.Write("{0} -> ", path[i]);
                 res += (path[i] + " -> ");
+                verticesResult.Add(path[i]);
             }
             Console.Write("{0}", path[path.Count - 1]);
+            verticesResult.Add(path[path.Count - 1]);
             Console.WriteLine("\n{0} degree connection.", (path.Count) - 2);
             res += path[path.Count - 1];
             res += "\n";
@@ -62,12 +64,12 @@ namespace BasicGUI
             return res;
         }
 
-        private void dfs(string src, string dest, bool[] visited, List<string> path, ref string ans)
+        private void dfs(string src, string dest, bool[] visited, List<string> path, ref string ans, ref List<string> verticesResult)
         {
             path.Add(src);
             if (src == dest)
             {
-                ans = printPath(path, ref ans);
+                ans = printPath(path, ref ans, ref verticesResult);
                 visited[findVertexIdx(dest)] = true;
             }
             visited[findVertexIdx(src)] = true;
@@ -77,7 +79,7 @@ namespace BasicGUI
                 {
                     if (visited[findVertexIdx(edge)] == false)
                     {
-                        dfs(edge, dest, visited, path, ref ans);
+                        dfs(edge, dest, visited, path, ref ans, ref verticesResult);
                     }
                 }
                 path.RemoveAt(path.Count - 1);
@@ -293,7 +295,7 @@ namespace BasicGUI
             return;
         }
 
-        public string exploreFriendBFS(string src, string dest)
+        public string exploreFriendBFS(string src, string dest, ref List<string> result)
         {
             string res = "";
             int level = 0;
@@ -303,6 +305,7 @@ namespace BasicGUI
                 res += ("Nama akun: " + src + " dan " + dest + "\n");
                 res += (src + "\n");
                 res += ("0nd-degree connection");
+                result.Add(src);
                 return res;
             }
 
@@ -364,10 +367,12 @@ namespace BasicGUI
                 for (int i = 0; i < path[path.Count - 1].Count - 1; i++)
                 {
                     Console.Write("{0} -> ", path[path.Count - 1][i]);
+                    result.Add(path[path.Count - 1][i]);
                     res += (path[path.Count - 1][i] + " -> ");
                 }
                 Console.Write("{0}\n", path[path.Count - 1][path[path.Count - 1].Count - 1]);
                 res += (path[path.Count - 1][path[path.Count - 1].Count - 1] + "\n");
+                result.Add(path[path.Count - 1][path[path.Count - 1].Count - 1]);
                 Console.WriteLine(level + "nd-degree connection");
                 res += (level + "nd-degree connection");
             }
@@ -384,7 +389,7 @@ namespace BasicGUI
             return res;
         }
 
-        public string exploreFriendsDFS(string src, string dest)
+        public string exploreFriendsDFS(string src, string dest, ref List<string> verticesResult)
         {
             string res = "";
             bool[] visited = new bool[numVertices];
@@ -403,7 +408,7 @@ namespace BasicGUI
                 visited[findVertexIdx(v.value)] = false;
             }
             List<string> path = new List<string>();
-            dfs(src, dest, visited, path, ref res);
+            dfs(src, dest, visited, path, ref res, ref verticesResult);
             if (visited[findVertexIdx(dest)] == false)
             {
                 Console.WriteLine("Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");

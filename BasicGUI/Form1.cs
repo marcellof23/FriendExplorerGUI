@@ -24,6 +24,8 @@ namespace BasicGUI
         string filecontent = "";
         string fullpath = "";
         Graph g;
+        Microsoft.Msagl.Drawing.Graph graph;
+        List<string> res;
 
         public Form1()
         {
@@ -63,20 +65,19 @@ namespace BasicGUI
             List<List<string>> data = Form1.parsingFile(this.fullpath);
             this.g = new Graph(data.Count);
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (List<string> vertices in data)
             {
-                graph.AddEdge(vertices.First(), vertices.Last());
-                graph.AddEdge(vertices.Last(), vertices.First());
+                var Edge = this.graph.AddEdge(vertices.First(), vertices.Last());
+                Edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
+                Edge.Attr.ArrowheadAtSource = ArrowStyle.None;
                 this.g.addEdge(vertices.First(), vertices.Last());
+                this.graph.FindNode(vertices.First()).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
+                this.graph.FindNode(vertices.Last()).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
             }
-            //gViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            //viewer.Graph = graph;
-            gViewer1.Graph = graph;
-            //associate the viewer with the form 
+            gViewer1.Graph = this.graph;
             this.SuspendLayout();
             this.ResumeLayout();
-            //this.Controls.Add(viewer);
             foreach (var x in this.g.getVertices())
             {
                 comboBox1.Items.Add(x);
@@ -120,6 +121,16 @@ namespace BasicGUI
         {
             richTextBox1.Clear();
             richTextBox1.Focus();
+            foreach (var x in this.g.getVertices())
+            {
+                 this.graph.FindNode(x).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
+            }
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            gViewer1.Graph = this.graph;
+            this.SuspendLayout();
+            this.ResumeLayout();
+
+
             if (this.source != "" && this.destination != "" && this.fullpath != "" && this.algorithm != "")
             {
                 string filename = System.IO.Path.GetFileName(this.fullpath);
@@ -128,15 +139,38 @@ namespace BasicGUI
 
                 if(this.algorithm == "BFS")
                 {
+                    this.res = new List<string>();
                     richTextBox1.AppendText(this.g.friendRecommendationBFS(this.source));
                     richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.AppendText(this.g.exploreFriendBFS(this.source, this.destination));
+                    richTextBox1.AppendText(this.g.exploreFriendBFS(this.source, this.destination, ref this.res));
+                    if(res.Any())
+                    {
+                        for(int i = 0; i < this.res.Count(); i++)
+                        {
+                            this.graph.FindNode(this.res[i]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Plum;
+                        }
+
+                        gViewer1.Graph = this.graph;
+                        this.SuspendLayout();
+                        this.ResumeLayout();
+                    }
                 }
                 else if(this.algorithm == "DFS")
                 {
                     richTextBox1.AppendText(this.g.friendRecommendationDFS(this.source));
                     richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination));
+                    richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination, ref this.res));
+                    if (res.Any())
+                    {
+                        for (int i = 0; i < this.res.Count(); i++)
+                        {
+                            this.graph.FindNode(this.res[i]).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Plum;
+                        }
+
+                        gViewer1.Graph = this.graph;
+                        this.SuspendLayout();
+                        this.ResumeLayout();
+                    }
                 }
                 else
                 {
