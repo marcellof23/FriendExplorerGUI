@@ -67,13 +67,16 @@ namespace BasicGUI
             foreach (List<string> vertices in data)
             {
                 graph.AddEdge(vertices.First(), vertices.Last());
+                graph.AddEdge(vertices.Last(), vertices.First());
                 this.g.addEdge(vertices.First(), vertices.Last());
             }
-            viewer.Graph = graph;
+            //gViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //viewer.Graph = graph;
+            gViewer1.Graph = graph;
             //associate the viewer with the form 
             this.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Controls.Add(viewer);
+            this.ResumeLayout();
+            //this.Controls.Add(viewer);
             foreach (var x in this.g.getVertices())
             {
                 comboBox1.Items.Add(x);
@@ -125,14 +128,12 @@ namespace BasicGUI
 
                 if(this.algorithm == "BFS")
                 {
-                    richTextBox1.AppendText(Environment.NewLine);
                     richTextBox1.AppendText(this.g.friendRecommendationBFS(this.source));
                     richTextBox1.AppendText(Environment.NewLine);
                     richTextBox1.AppendText(this.g.exploreFriendBFS(this.source, this.destination));
                 }
                 else if(this.algorithm == "DFS")
                 {
-                    richTextBox1.AppendText(Environment.NewLine);
                     richTextBox1.AppendText(this.g.friendRecommendationDFS(this.source));
                     richTextBox1.AppendText(Environment.NewLine);
                     richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination));

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,7 +47,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.gViewer1 = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.SuspendLayout();
             // 
             // button1
@@ -169,9 +170,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(150, 709);
+            this.richTextBox1.Location = new System.Drawing.Point(150, 618);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(706, 276);
+            this.richTextBox1.Size = new System.Drawing.Size(702, 230);
             this.richTextBox1.TabIndex = 12;
             this.richTextBox1.Text = "";
             // 
@@ -181,7 +182,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.button2.Location = new System.Drawing.Point(150, 417);
+            this.button2.Location = new System.Drawing.Point(150, 553);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 48);
@@ -193,7 +194,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(441, 304);
+            this.comboBox1.Location = new System.Drawing.Point(441, 440);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(276, 28);
@@ -205,7 +206,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label2.Location = new System.Drawing.Point(150, 304);
+            this.label2.Location = new System.Drawing.Point(150, 440);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(202, 29);
             this.label2.TabIndex = 15;
@@ -217,7 +218,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label8.Location = new System.Drawing.Point(406, 304);
+            this.label8.Location = new System.Drawing.Point(406, 440);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 29);
             this.label8.TabIndex = 16;
@@ -229,7 +230,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label9.Location = new System.Drawing.Point(150, 359);
+            this.label9.Location = new System.Drawing.Point(150, 495);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(257, 29);
             this.label9.TabIndex = 17;
@@ -241,7 +242,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(176)))));
-            this.label10.Location = new System.Drawing.Point(406, 363);
+            this.label10.Location = new System.Drawing.Point(406, 499);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 29);
             this.label10.TabIndex = 18;
@@ -251,28 +252,59 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(441, 364);
+            this.comboBox2.Location = new System.Drawing.Point(441, 500);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(276, 28);
             this.comboBox2.TabIndex = 19;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // panel1
+            // gViewer1
             // 
-            this.panel1.Location = new System.Drawing.Point(150, 499);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 177);
-            this.panel1.TabIndex = 20;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.gViewer1.ArrowheadLength = 10D;
+            this.gViewer1.AsyncLayout = false;
+            this.gViewer1.AutoScroll = true;
+            this.gViewer1.BackwardEnabled = false;
+            this.gViewer1.BuildHitTree = true;
+            this.gViewer1.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
+            this.gViewer1.EdgeInsertButtonVisible = true;
+            this.gViewer1.FileName = "";
+            this.gViewer1.ForwardEnabled = false;
+            this.gViewer1.Graph = null;
+            this.gViewer1.InsertingEdge = false;
+            this.gViewer1.LayoutAlgorithmSettingsButtonVisible = true;
+            this.gViewer1.LayoutEditingEnabled = true;
+            this.gViewer1.Location = new System.Drawing.Point(125, 207);
+            this.gViewer1.LooseOffsetForRouting = 0.25D;
+            this.gViewer1.MouseHitDistance = 0.05D;
+            this.gViewer1.Name = "gViewer1";
+            this.gViewer1.NavigationVisible = true;
+            this.gViewer1.NeedToCalculateLayout = true;
+            this.gViewer1.OffsetForRelaxingInRouting = 0.6D;
+            this.gViewer1.PaddingForEdgeRouting = 8D;
+            this.gViewer1.PanButtonPressed = false;
+            this.gViewer1.SaveAsImageEnabled = true;
+            this.gViewer1.SaveAsMsaglEnabled = true;
+            this.gViewer1.SaveButtonVisible = true;
+            this.gViewer1.SaveGraphButtonVisible = true;
+            this.gViewer1.SaveInVectorFormatEnabled = true;
+            this.gViewer1.Size = new System.Drawing.Size(737, 212);
+            this.gViewer1.TabIndex = 20;
+            this.gViewer1.TightOffsetForRouting = 0.125D;
+            this.gViewer1.ToolBarIsVisible = true;
+            this.gViewer1.Transform = ((Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation)(resources.GetObject("gViewer1.Transform")));
+            this.gViewer1.UndoRedoButtonsVisible = true;
+            this.gViewer1.WindowZoomButtonPressed = false;
+            this.gViewer1.ZoomF = 1D;
+            this.gViewer1.ZoomWindowThreshold = 0.05D;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(990, 1055);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(985, 863);
+            this.Controls.Add(this.gViewer1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -320,6 +352,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Panel panel1;
+        private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer1;
     }
 }

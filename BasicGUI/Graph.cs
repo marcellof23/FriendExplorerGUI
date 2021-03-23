@@ -156,10 +156,6 @@ namespace BasicGUI
                 }
                 lvl++;
             }
-            Console.Write("\n");
-            res += "\n";
-            Console.Write("\n");
-            res += "\n";
             Console.Write("Daftar rekomendasi teman untuk akun {0}:  \n", AkunSource);
             res += ("Daftar rekomendasi teman untuk akun " + AkunSource + ": " + "\n");
             List<Tuple<string, int, List<string>>> Recs = new List<Tuple<string, int, List<string>>>();
@@ -193,8 +189,17 @@ namespace BasicGUI
                 foreach (var items in item.Item3)
                 {
                     Console.WriteLine("{0}", items);
-                    res += (items + "\n");
+                    res += items;
+                    if (items != item.Item3.Last())
+                    {
+                        res += (", ");
+                    }
+                    else
+                    {
+                        res += (".");
+                    }
                 }
+                res += "\n";
             }
             return res;
         }
@@ -241,7 +246,15 @@ namespace BasicGUI
                 foreach (var y in x.Value)
                 {
                     Console.Write(y + " ");
-                    result += (y + " ");
+                    result += (y);
+                    if (y != x.Value.Last())
+                    {
+                        result += (", ");
+                    }
+                    else
+                    {
+                        result += (".");
+                    }
                 }
                 Console.WriteLine(" ");
                 result += "\n";
