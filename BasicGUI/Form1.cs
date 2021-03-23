@@ -157,6 +157,7 @@ namespace BasicGUI
                 }
                 else if(this.algorithm == "DFS")
                 {
+                    this.res = new List<string>();
                     richTextBox1.AppendText(this.g.friendRecommendationDFS(this.source));
                     richTextBox1.AppendText(Environment.NewLine);
                     richTextBox1.AppendText(this.g.exploreFriendsDFS(this.source, this.destination, ref this.res));
