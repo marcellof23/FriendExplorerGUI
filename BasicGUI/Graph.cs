@@ -319,6 +319,7 @@ namespace BasicGUI
             string res = "";
             int level = 0;
 
+            // Melakukan pengecekan apakah src sama dengan dest
             if(src == dest)
             {
                 res += ("Nama akun: " + src + " dan " + dest + "\n");
@@ -332,43 +333,47 @@ namespace BasicGUI
 
             List<string> q = new List<string>();
 
+            // Inisialisasi array visited untuk penanda apakah setiap vertices sudah dikunjungi atau belum
             bool[] visited = Enumerable.Repeat((bool)false, numVertices).ToArray();
             bool isFinish = false;
 
             visited[findVertexIdx(src)] = true;
 
+            // Memasukkan vetices ke queue dan null untuk penanda naik level 
             q.Add(src);
             q.Add(null);
 
             path.Add(new List<string>() { src });
 
+            // Pengulangan selaman belum sampain / belum ketemu dest dan selama queue tidak hanya berisi null
             while (!isFinish && q.Count() > 1)
             {
+                // Melakukan dequeue
                 string temp = q.First();
                 q.RemoveAt(0);
 
-                if (temp == null)
+                if (temp == null) // Jika elemen yang di dequeue ternyata null maka naik level
                 {
                     level++;
                     q.Add(null);
                 }
                 else
                 {
-                    List<string> path_temp = path.First().ConvertAll(val => val); // Deep Copy
+                    List<string> path_temp = path.First().ConvertAll(val => val); // Melakukan Deep Copy
                     path.RemoveAt(0);
 
-                    foreach (string edge in vertices[findVertexIdx(temp)].edges)
+                    foreach (string edge in vertices[findVertexIdx(temp)].edges) // Mengunjungi setiap simpul tetangga
                     {
-                        if (visited[findVertexIdx(edge)] == false)
+                        if (visited[findVertexIdx(edge)] == false) // Mengecek apakah vertices sudah di visit apa belum
                         {
                             visited[findVertexIdx(edge)] = true;
 
                             q.Add(edge);
-                            List<string> path_temp_2 = path_temp.ConvertAll(val => val); // Deep Copy
+                            List<string> path_temp_2 = path_temp.ConvertAll(val => val); // Melakukan Deep Copy
                             path_temp_2.Add(edge);
                             path.Add(path_temp_2);
 
-                            if (visited[findVertexIdx(dest)] == true)
+                            if (visited[findVertexIdx(dest)] == true) // Mengecek apakah dest vertices sudah dikunjungi atau belum
                             {
                                 isFinish = true;
                                 break;
@@ -378,9 +383,10 @@ namespace BasicGUI
                 }
             }
 
-
+            // isFinish bernilai true jika dest vertices dikunjungi
             if (isFinish)
             {
+                // Menampilkan hasil 
                 Console.WriteLine("Nama akun: " + src + " dan " + dest);
                 res += ("Nama akun: " + src + " dan " + dest + "\n");
                 for (int i = 0; i < path[path.Count - 1].Count - 1; i++)
@@ -395,8 +401,9 @@ namespace BasicGUI
                 Console.WriteLine(level + "nd-degree connection");
                 res += (level + "nd-degree connection");
             }
-            else
+            else // isFinish bernilai false jika dest vertices tidak dikunjungi
             {
+                // Menampilkan hasil 
                 Console.WriteLine("Nama akun: " + src + " dan " + dest);
                 Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
                 Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
@@ -405,6 +412,7 @@ namespace BasicGUI
                 res += ("Anda harus memulai koneksi baru itu sendiri." + "\n");
             }
 
+            // Melakukan return res string
             return res;
         }
 
