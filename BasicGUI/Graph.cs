@@ -123,30 +123,37 @@ namespace BasicGUI
         {
             string res = "";
             string AkunSource = source;
+            // array vis untuk mencatat node yang sudah dikunjungi / belum sebanyak jumlah vertices(numVertices)
             bool[] vis = new bool[numVertices];
+            // array level untuk menampung level dari graf
             int[] level = new int[numVertices];
 
             foreach (Vertex v in vertices)
             {
+                // inisiasi awal
                 vis[findVertexIdx(v.value)] = false;
                 level[findVertexIdx(v.value)] = 0;
             }
-
+            // menandai node awal dengan visited dan levelnya dari 0
             vis[findVertexIdx(source)] = true;
             level[findVertexIdx(source)] = 0;
             List<string> L = new List<string>();
             List<string> Friend = new List<string>();
             L.Add(source);
             int lvl = 0;
+            // selama masih ada node yang belum diremove
             while (L.Any())
             {
+                // prinsipnya seperti queue dengan menghapus list front
                 source = L.First();
                 L.RemoveAt(0);
 
                 foreach (string edge in vertices[findVertexIdx(source)].edges)
                 {
+                    // cek apakah edge sudah dikunjngi / belu,
                     if (!vis[findVertexIdx(edge)])
                     {
+                        
                         vis[findVertexIdx(edge)] = true;
                         level[findVertexIdx(edge)] = level[findVertexIdx(source)] + 1;
                         L.Add(edge);
@@ -169,8 +176,10 @@ namespace BasicGUI
                 List<string> Rec = new List<string>();
                 foreach (string edge in vertices[findVertexIdx(s)].edges)
                 {
+                    // jika berada pada level 1 maka dia merupakan teman dari node source
                     if (level[findVertexIdx(edge)] == 1)
                     {
+                        //tambahkan mutual yang bertetanggaan
                         Rec.Add(edge);
                         mutual++;
                     }
@@ -178,7 +187,9 @@ namespace BasicGUI
                 Tuple<string, int, List<string>> RM = new Tuple<string, int, List<string>>(s, mutual, Rec);
                 Recs.Add(RM);
             }
+            // mengurutkan mutual secara menurun 
             Recs = Recs.OrderByDescending(i => i.Item2).ToList();
+            // formating 
             foreach (var item in Recs)
             {
                 string name = item.Item1;
@@ -211,8 +222,11 @@ namespace BasicGUI
             string result = "";
             bool[] vis = Enumerable.Repeat((bool)false, numVertices).ToArray();
             Console.Write("\n");
+            // dictionary untuk menampung kedalmaan dan nodenya
             Dictionary<string, int> maps = new Dictionary<string, int>();
+            // dictionary untuk menampung list mutual 
             Dictionary<string, List<string>> mutual = new Dictionary<string, List<string>>();
+            // dictionary untuk menampung list dari rekomendasi
             Dictionary<string, List<string>> mList = new Dictionary<string, List<string>>();
             dfs1(source, 0, vis, ref maps, ref mutual);
             foreach (var x in mutual)
@@ -232,11 +246,13 @@ namespace BasicGUI
                     }
                 }
             }
+            // mengurutkan list dari mutual friends secara menurun
             var ListMutual = from pair in mList
                              orderby pair.Value.Count descending
                              select pair;
             Console.Write("Daftar rekomendasi teman untuk akun {0}:  \n", source);
             result += ("Daftar rekomendasi teman untuk akun " + source + ": " + "\n");
+            // formatting
             foreach (var x in ListMutual)
             {
                 int value = x.Value.Count;
@@ -263,10 +279,12 @@ namespace BasicGUI
             }
             return result;
         }
-
+        // fungsi rekursif untuk mengunjungi seluruh node yang berada pada jangakauan 2 level dari source
         private void dfs1(string source, int depth, bool[] vis, ref Dictionary<string, int> L, ref Dictionary<string, List<string>> Mutual)
         {
+            // inisiasi 
             L[source] = depth;
+            // jika depth sudah pada kedalaman 2, kembalikan fungsi (melakukan pemotongan rekursif agar tidak mengunjungi node yang tidak diperlukan)
             if (depth == 2)
             {
                 return;
@@ -275,9 +293,10 @@ namespace BasicGUI
 
             foreach (string edge in vertices[findVertexIdx(source)].edges)
             {
+                // jika masih ada edge yang belum divisit, lakukan rekursif dengan kedalaman + 1
                 if (!vis[findVertexIdx(edge)])
                 {
-
+                    // jika depthnya 1 berarti tampung kedalam list mutual
                     if (depth == 1)
                     {
                         if (Mutual.ContainsKey(source))
