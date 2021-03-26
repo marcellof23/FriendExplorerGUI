@@ -14,7 +14,6 @@ PENGAPLIKASIAN ALGORITMA BFS DAN DFS DALAM FITUR PEOPLE YOU MAY KNOW JEJARING SO
 
 
 ## 💢 Algoritma
-shell
 1. Visualisasi dari fitur explore friend dan friend recommendation dilambangkan / divisualisasi sebagai graf tak berarah.
 - Simpul / vertices merupakan nama akun.
 - Sisi / edges merupakan hubungan dari akun yang satu dengan akun lain.
