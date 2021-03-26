@@ -64,28 +64,6 @@ namespace BasicGUI
             return res;
         }
 
-        private void dfs(string src, string dest, bool[] visited, List<string> path, ref string ans, ref List<string> verticesResult)
-        {
-            path.Add(src);
-            if (src == dest)
-            {
-                ans = printPath(path, ref ans, ref verticesResult);
-                visited[findVertexIdx(dest)] = true;
-            }
-            visited[findVertexIdx(src)] = true;
-            if (visited[findVertexIdx(dest)] == false)
-            {
-                foreach (string edge in vertices[findVertexIdx(src)].edges)
-                {
-                    if (visited[findVertexIdx(edge)] == false)
-                    {
-                        dfs(edge, dest, visited, path, ref ans, ref verticesResult);
-                    }
-                }
-                path.RemoveAt(path.Count - 1);
-            }
-        }
-
         public void addEdge(string src, string dest)
         {
             addVertex(src);
@@ -416,11 +394,13 @@ namespace BasicGUI
             return res;
         }
 
+        // fungsi exploreFriendDFS
         public string exploreFriendsDFS(string src, string dest, ref List<string> verticesResult)
         {
             string res = "";
             bool[] visited = new bool[numVertices];
 
+            // jika simpul asal dan tujuan sama maka return hasil 0 degree connection
             if (src == dest)
             {
                 res += ("Nama akun: " + src + " dan " + dest + "\n");
@@ -430,13 +410,17 @@ namespace BasicGUI
                 return res;
             }
 
-
+            // inisialisasi array visited dengan false 
             foreach (Vertex v in vertices)
             {
                 visited[findVertexIdx(v.value)] = false;
             }
             List<string> path = new List<string>();
+
+            // pemanggilan prosedur dfs untuk pencarian lintasan dari simpul src ke dest 
             dfs(src, dest, visited, path, ref res, ref verticesResult);
+
+            // jika lintasan tidak ditemukan maka ditampilkan log tidak ada lintasan
             if (visited[findVertexIdx(dest)] == false)
             {
                 Console.WriteLine("Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
@@ -445,7 +429,35 @@ namespace BasicGUI
             }
             return res;
         }
-
+        // prosedur traversal graf DFS secara rekursif
+        private void dfs(string src, string dest, bool[] visited, List<string> path, ref string ans, ref List<string> verticesResult)
+        {
+            // starting vertex / simpul yang saat ini sedang diperiksa ditambakan ke array solusi path
+            path.Add(src);
+            
+            // jika starting vertex = simpul solusi maka simpul solusi ditandai sudah dikunjungi dan pencarian selesai
+            if (src == dest)
+            {
+                ans = printPath(path, ref ans, ref verticesResult);
+                visited[findVertexIdx(dest)] = true;
+            }
+            visited[findVertexIdx(src)] = true;
+            // jika simpul tujuan belum dikunjungi atau belum ada lintasan yang terbentuk dari simpul src ke dest
+            if (visited[findVertexIdx(dest)] == false)
+            {
+                // lakukan dfs pada setiap simpul yang bertetangga dengan simpul yang sedang diperiksa dan belum dikunjungi
+                foreach (string edge in vertices[findVertexIdx(src)].edges)
+                {
+                    if (visited[findVertexIdx(edge)] == false)
+                    {
+                        dfs(edge, dest, visited, path, ref ans, ref verticesResult);
+                    }
+                }
+                // setiap tetangga dari simpul yang sedang diperiksa memiliki lintasan ke dest
+                // remove simpul dari array solusi karena dari simpul tersebut tidak ada lintasan
+                path.RemoveAt(path.Count - 1);
+            }
+        }
         public List<string> getVertices()
         {
             List<string> vertex = new List<string>();
